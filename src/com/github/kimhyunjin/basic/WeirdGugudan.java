@@ -1,7 +1,8 @@
-package com.github.kimhyunjin.gugudan;
+package com.github.kimhyunjin.basic;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class WeirdGugudan {
     private Queue<Integer> danQueue;
@@ -12,6 +13,27 @@ public class WeirdGugudan {
         timesArr = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1};
     }
 
+    public static void doGugudan() {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            WeirdGugudan gugudan = new WeirdGugudan();
+
+            System.out.println("한 줄에 출력할 단 수를 입력하세요. (1~9)");
+            System.out.println("종료는 0");
+            try {
+                int inputN = Integer.parseInt(String.valueOf(sc.nextLine()));
+                if (inputN >= 1 && inputN <=9) {
+                    gugudan.printGugudan(inputN);
+
+                }
+                if (inputN == 0) {
+                    break;
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
 
     public void printGugudan(int printDanAtOneRow) {
         int danIdx = 1;
