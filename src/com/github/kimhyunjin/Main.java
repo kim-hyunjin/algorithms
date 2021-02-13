@@ -1,11 +1,10 @@
 package com.github.kimhyunjin;
 
-import com.github.kimhyunjin.basic.GCDandLCM;
+import com.github.kimhyunjin.programmers.HashQuiz1;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(GCDandLCM.gcd(1071, 1029)); // 21
-        System.out.println(GCDandLCM.lcm(192, 72)); // 576
+        HashQuiz1.test();
     }
 }
