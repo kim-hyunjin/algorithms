@@ -6,7 +6,7 @@ package com.github.kimhyunjin.basic;
  * 최소공배수(LCM, Least Common Multiple)
  * 구하기
  */
-public class GCDandLCM {
+public class GCDLCM {
 
     public static int gcd(int a, int b) {
         while (b!=0) {

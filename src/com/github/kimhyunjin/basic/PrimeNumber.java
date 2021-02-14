@@ -25,12 +25,13 @@ public class PrimeNumber {
                 continue;
             }
 
-            // i를 제외한 i의 배수들은 0으로 체
+            // i를 제외한 i의 배수들 걸러내기
             for (int j = i+i; j <= n; j += i) {
                 primes[j] = 0;
             }
         }
 
+        // 걸러지지 않은 수들은 소수임
         for (int i = 2; i <= n; i++) {
             if (primes[i] != 0) {
                 returnArr.add(primes[i]);
