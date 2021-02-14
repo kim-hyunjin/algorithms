@@ -8,6 +8,11 @@ package com.github.kimhyunjin.basic;
  */
 public class GCDLCM {
 
+    public static void main(String[] args) {
+        System.out.println(GCDLCM.gcd(123, 456));
+        System.out.println(GCDLCM.lcm(123, 456));
+    }
+
     public static int gcd(int a, int b) {
         while (b!=0) {
             int r = a % b;

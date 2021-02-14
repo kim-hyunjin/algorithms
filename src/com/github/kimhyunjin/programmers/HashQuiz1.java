@@ -17,20 +17,6 @@ import java.util.stream.Collectors;
  */
 public class HashQuiz1 {
 
-    public static void test() {
-        String[] participant = new String[]{"김씨", "이씨", "박씨"};
-        String[] completion = new String[]{"김씨", "이씨"};
-
-        String result = solution1(participant, completion);
-        System.out.println(result);
-
-        result = solution2(participant, completion);
-        System.out.println(result);
-
-        result = solution3(participant, completion);
-        System.out.println(result);
-    }
-
     public static String solution1(String[] participant, String[] completion) {
         String answer = "";
         HashMap<String, Integer> map = new HashMap<>();
@@ -45,6 +31,12 @@ public class HashQuiz1 {
         return answer;
     }
 
+    /**
+     * 문자열 정렬 사용
+     * @param participant
+     * @param completion
+     * @return
+     */
     public static String solution2(String[] participant, String[] completion) {
         Arrays.sort(participant);
         Arrays.sort(completion);
@@ -73,5 +65,19 @@ public class HashQuiz1 {
         }
 
         return map.keySet().iterator().next();
+    }
+
+    public static void main(String[] args) {
+        String[] participant = new String[]{"김씨", "이씨", "박씨"};
+        String[] completion = new String[]{"김씨", "이씨"};
+
+        String result = solution1(participant, completion);
+        System.out.println(result);
+
+        result = solution2(participant, completion);
+        System.out.println(result);
+
+        result = solution3(participant, completion);
+        System.out.println(result);
     }
 }

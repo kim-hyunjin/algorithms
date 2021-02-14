@@ -13,7 +13,7 @@ public class WeirdGugudan {
         timesArr = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1};
     }
 
-    public static void doGugudan() {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (true) {
             WeirdGugudan gugudan = new WeirdGugudan();

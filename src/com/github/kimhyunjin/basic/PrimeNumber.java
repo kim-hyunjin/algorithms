@@ -3,16 +3,17 @@ package com.github.kimhyunjin.basic;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 아리스토테네스의 체를 사용해
+ * 1 ~ n 개 사이의 소수를 리턴
+ */
 public class PrimeNumber {
 
-    public PrimeNumber() {}
+    public static void main(String[] args) {
+        List<Integer> result = PrimeNumber.findPrimeNumbers(50);
+        System.out.println(result);
+    }
 
-    /**
-     * 아리스토테네스의 체를 사용해
-     * 1 ~ n 개 사이의 소수를 리턴
-     * @param n
-     * @return
-     */
     public static List<Integer> findPrimeNumbers(int n) {
         List<Integer> returnArr = new ArrayList<>();
         int[] primes = new int[n+1];
