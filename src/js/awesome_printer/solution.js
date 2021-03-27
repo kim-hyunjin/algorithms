@@ -6,12 +6,10 @@ function solution(priorities, location) {
       location: index,
     };
   });
-  console.log(priorities);
 
   while (priorities.length) {
     const doc = priorities.shift();
-    console.log("doc: ", doc);
-    if (priorities.findIndex((item) => item.priority > doc.priority) != -1) {
+    if (priorities.some((item) => item.priority > doc.priority)) {
       priorities.push(doc);
     } else {
       answer++;
@@ -19,8 +17,6 @@ function solution(priorities, location) {
         break;
       }
     }
-    console.log(answer);
-    console.log("priorities : ", priorities);
   }
   return answer;
 }
