@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type doc struct {
 	priority int
 	location int
@@ -34,4 +36,11 @@ func solution(priorities []int, location int) int {
 		}
 	}
 	return answer
+}
+
+func main() {
+	priorities := []int{2, 1, 3, 2}
+	location := 2
+	answer := solution(priorities, location)
+	fmt.Println(answer)
 }
