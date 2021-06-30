@@ -1,4 +1,4 @@
-package com.github.kimhyunjin.programmers;
+package com.github.kimhyunjin.programmers.stack_queue;
 
 import java.util.Arrays;
 

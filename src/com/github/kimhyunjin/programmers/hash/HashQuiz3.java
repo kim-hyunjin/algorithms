@@ -1,4 +1,4 @@
-package com.github.kimhyunjin.programmers;
+package com.github.kimhyunjin.programmers.hash;
 
 import java.util.*;
 import java.util.stream.Collectors;
