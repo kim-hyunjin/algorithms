@@ -1,8 +1,6 @@
 package com.github.kimhyunjin.programmers.heap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * 하드디스크는 한 번에 하나의 작업만 수행할 수 있습니다.
@@ -22,57 +20,79 @@ import java.util.PriorityQueue;
 public class DiskController {
 
     public static class Job implements Comparable<Job> {
-        public int id;
-        public int requestTime;
-        public int needTime;
-        public int processedTime;
+        int requestTime;
+        int workingTime;
+        int processedTime;
 
-        public Job(int id, int requestTime, int processTime) {
-            this.id = id;
+        Job(int requestTime, int workingTime) {
             this.requestTime = requestTime;
-            this.needTime = processTime;
+            this.workingTime = workingTime;
         }
 
-        public void setProcessedTime(int finishTime) {
+        void setProcessedTime(int finishTime) {
             this.processedTime = finishTime - requestTime;
         }
 
         @Override
         public int compareTo(Job o) {
-            if (this.needTime < o.needTime) return -1;
-            else if (this.needTime > o.needTime) return 1;
-            else return 0;
+            return this.workingTime - o.workingTime;
         }
     }
 
     public static int solution(int[][] jobs) {
-        int answer = 0;
-        List<Job> list = new ArrayList<>();
-        for (int i = 0; i < jobs.length; i++) {
-            int requestTime = jobs[i][0];
-            int needTime = jobs[i][1];
-            list.add(new Job(i, requestTime, needTime));
-        }
-        list.sort((o1, o2) -> {
-            if (o1.requestTime < o2.requestTime) return -1;
-            else if (o1.requestTime > o2.requestTime) return 1;
-            else return 0;
-        });
-        int presentTime = 0;
-        Job firstJob = list.remove(0);
-
+        LinkedList<Job> watingJobList = createJobList(jobs);
+        assert watingJobList.peek() != null;
 
         PriorityQueue<Job> heap = new PriorityQueue<>();
+        List<Job> endedJobList = new ArrayList<>();
 
-
-        while(!heap.isEmpty()) {
-            Job job = heap.poll();
+        int processedJobCnt = 0;
+        int present = watingJobList.peek().requestTime;
+        while (processedJobCnt < jobs.length) {
+            while(!watingJobList.isEmpty() && watingJobList.peek().requestTime <= present) {
+                heap.offer(watingJobList.pollFirst());
+            }
+            if (!heap.isEmpty()) {
+                Job job = heap.poll();
+                present += job.workingTime;
+                job.setProcessedTime(present);
+                endedJobList.add(job);
+                processedJobCnt++;
+            } else {
+                present++;
+            }
         }
-        return answer;
+        return calculateAverageProcessTime(endedJobList);
+    }
+
+    /**
+     * @param endJobList 완료된 작업 목록
+     * @return 평균 작업 처리 완료 시간(완료 작업 목록의 처리시간의 합 / 작업 개수)
+     */
+    private static int calculateAverageProcessTime(List<Job> endJobList) {
+        int sum = endJobList.stream().mapToInt(job -> job.processedTime).sum();
+        int size = endJobList.size();
+        System.out.println("sum: " + sum + " size: " + size + " avg: " + sum / size);
+        return sum / size;
+    }
+
+    /**
+     * @param jobs 작업 목록
+     * @return 가장 일찍 요청된 작업 순으로 정렬된 리스트
+     */
+    private static LinkedList<Job> createJobList(int[][] jobs) {
+        LinkedList<Job> list = new LinkedList<>();
+        for (int[] job : jobs) {
+            int requestTime = job[0];
+            int needTime = job[1];
+            list.add(new Job(requestTime, needTime));
+        }
+        list.sort(Comparator.comparingInt(o -> o.requestTime));
+        return list;
     }
 
     public static void main(String[] args) {
-        int[][] jobs = {{0, 3}, {1, 9}, {2, 6}};
+        int[][] jobs = {{2, 6}, {0, 3}, {1, 9}};
         int expected = 9;
         int result = solution(jobs);
 
