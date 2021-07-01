@@ -70,42 +70,41 @@ public class DoublePriorityQueue {
         heap.add(9);
         heap.add(9);
         for (int i = 0; i < heap.size(); i++) {
+            System.out.println("list: " + heap);
             System.out.println("MIN " + heap.pollMin());
             System.out.println("MAX " + heap.pollMax());
         }
     }
 
     static class MyHeap {
-        ArrayList<Integer> minHeap = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
 
         void add(Integer newValue) {
-            minHeap.add(newValue);
-            shiftUp();
+            list.add(newValue);
+            list.sort(Integer::compare);
         }
 
         int pollMin() {
-            int result = minHeap.remove(0);
-            shiftDown();
-            return result;
+            return list.remove(0);
         }
 
         int pollMax() {
-            return minHeap.remove(minHeap.size() - 1);
+            return list.remove(list.size() - 1);
         }
 
         int size() {
-            return minHeap.size();
+            return list.size();
         }
 
         boolean isEmpty() {
-            return minHeap.isEmpty();
+            return list.isEmpty();
         }
 
         @Override
         public String toString() {
             StringBuilder sb = new StringBuilder();
             sb.append("[");
-            for (Integer value : minHeap) {
+            for (Integer value : list) {
                 sb.append(value);
                 sb.append(",");
             }
@@ -113,72 +112,72 @@ public class DoublePriorityQueue {
             return sb.toString();
         }
 
-        private void shiftUp() {
-            int index = minHeap.size() - 1;
-            while (index < 1) {
-                Integer currentNode = minHeap.get(index);
-                int parentIndex = (index - 1) / 2;
-                Integer parentNode = minHeap.get(parentIndex);
+//        private void shiftUp() {
+//            int index = minHeap.size() - 1;
+//            while (index < 1) {
+//                Integer currentNode = minHeap.get(index);
+//                int parentIndex = (index - 1) / 2;
+//                Integer parentNode = minHeap.get(parentIndex);
+//
+//                if (parentNode <= currentNode) {
+//                    break;
+//                }
+//
+//                minHeap.set(index, parentNode);
+//                minHeap.set(parentIndex, currentNode);
+//                index = parentIndex;
+//            }
+//
+//            shiftLeaf();
+//        }
+//
+//        private void shiftDown() {
+//            int index = 0;
+//            int min = index;
+//            while (true) {
+//                int leftChildIndex = 2 * index + 1;
+//                int rightChildIndex = 2 * index + 2;
+//                int size = minHeap.size();
+//
+//
+//                if (leftChildIndex < size && minHeap.get(leftChildIndex) < minHeap.get(min)) {
+//                    min = leftChildIndex;
+//                }
+//                if (rightChildIndex < size && minHeap.get(rightChildIndex) < minHeap.get(min)) {
+//                    min = rightChildIndex;
+//                }
+//                if (index == min) {
+//                    break;
+//                }
+//                Integer temp = minHeap.get(index);
+//                minHeap.set(index, minHeap.get(min));
+//                minHeap.set(min, temp);
+//                index = min;
+//
+//            }
+//
+//            shiftLeaf();
+//        }
 
-                if (parentNode <= currentNode) {
-                    break;
-                }
-
-                minHeap.set(index, parentNode);
-                minHeap.set(parentIndex, currentNode);
-                index = parentIndex;
-            }
-
-            shiftLeaf();
-        }
-
-        private void shiftDown() {
-            int index = 0;
-            int min = index;
-            while (true) {
-                int leftChildIndex = 2 * index + 1;
-                int rightChildIndex = 2 * index + 2;
-                int size = minHeap.size();
-
-
-                if (leftChildIndex < size && minHeap.get(leftChildIndex) < minHeap.get(min)) {
-                    min = leftChildIndex;
-                }
-                if (rightChildIndex < size && minHeap.get(rightChildIndex) < minHeap.get(min)) {
-                    min = rightChildIndex;
-                }
-                if (index == min) {
-                    break;
-                }
-                Integer temp = minHeap.get(index);
-                minHeap.set(index, minHeap.get(min));
-                minHeap.set(min, temp);
-                index = min;
-
-            }
-
-            shiftLeaf();
-        }
-
-        private void shiftLeaf() {
-            int leafLevel = (int)Math.ceil((Math.log(minHeap.size() + 1) / Math.log(2)));
-            System.out.println("leafLevel: " + leafLevel);
-            if (minHeap.size() < 3) {
-                return;
-            }
-            int index = (int)Math.pow(2, leafLevel - 1) - 1;
-            System.out.println("index " + index);
-            while (index < minHeap.size() - 1) {
-                System.out.println("Shifting leaf...");
-                System.out.println("val1 : " + minHeap.get(index) + " vs " + "val2 : " + minHeap.get(index + 1));
-                if (minHeap.get(index) > minHeap.get(index + 1)) {
-                    Integer temp = minHeap.get(index + 1);
-                    minHeap.set(index + 1, minHeap.get(index));
-                    minHeap.set(index, temp);
-                }
-                index++;
-            }
-            System.out.println(minHeap);
-        }
+//        private void shiftLeaf() {
+//            int leafLevel = (int)Math.ceil((Math.log(minHeap.size() + 1) / Math.log(2)));
+//            System.out.println("leafLevel: " + leafLevel);
+//            if (minHeap.size() < 3) {
+//                return;
+//            }
+//            int index = (int)Math.pow(2, leafLevel - 1) - 1;
+//            System.out.println("index " + index);
+//            while (index < minHeap.size() - 1) {
+//                System.out.println("Shifting leaf...");
+//                System.out.println("val1 : " + minHeap.get(index) + " vs " + "val2 : " + minHeap.get(index + 1));
+//                if (minHeap.get(index) > minHeap.get(index + 1)) {
+//                    Integer temp = minHeap.get(index + 1);
+//                    minHeap.set(index + 1, minHeap.get(index));
+//                    minHeap.set(index, temp);
+//                }
+//                index++;
+//            }
+//            System.out.println(minHeap);
+//        }
     }
 }
