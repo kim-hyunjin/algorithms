@@ -16,20 +16,19 @@ import java.util.Set;
 public class PrimeNumber {
     public static int solution(String numbers) {
         int[] intNumbers = new int[numbers.length()];
-        Set<String> numSet = new HashSet<>();
+        Set<Integer> numSet = new HashSet<>();
 
         for (int i = 0; i < numbers.length(); i++) {
-            String strNum = numbers.substring(i, i+1);
-            intNumbers[i] = Integer.parseInt(strNum);
-            numSet.add(strNum);
+            intNumbers[i] = Integer.parseInt(numbers.substring(i, i+1));
+            numSet.add(intNumbers[i]);
         }
 
         heapPermutation(intNumbers, intNumbers.length, intNumbers.length, numSet);
 
         int answer = 0;
-        for (String num : numSet) {
+        for (int num : numSet) {
             System.out.println(num);
-            if (isPrime(Integer.parseInt(num))) {
+            if (isPrime(num)) {
                 answer++;
             }
         }
@@ -37,18 +36,18 @@ public class PrimeNumber {
     }
 
     // Prints the array
-    private static void storeNumber(int a[], int n, Set<String> storage)
+    private static void storeNumber(int a[], int n, Set<Integer> storage)
     {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
             sb.append(a[i]);
+            storage.add(Integer.parseInt(sb.toString()));
         }
 //        System.out.println(sb);
-        storage.add(sb.toString());
     }
 
     // Generating permutation using Heap Algorithm
-    private static void heapPermutation(int a[], int size, int n, Set<String> storage)
+    private static void heapPermutation(int a[], int size, int n, Set<Integer> storage)
     {
         // if size becomes 1 then store the obtained
         // permutation
@@ -60,19 +59,19 @@ public class PrimeNumber {
 
             // if size is odd, swap 0th i.e (first) and
             // (size-1)th i.e (last) element
+            int temp;
             if (size % 2 == 1) {
-                int temp = a[0];
+                temp = a[0];
                 a[0] = a[size - 1];
-                a[size - 1] = temp;
             }
 
             // If size is even, swap ith
             // and (size-1)th i.e last element
             else {
-                int temp = a[i];
+                temp = a[i];
                 a[i] = a[size - 1];
-                a[size - 1] = temp;
             }
+            a[size - 1] = temp;
         }
     }
 
