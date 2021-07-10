@@ -15,15 +15,20 @@ import java.util.Set;
  */
 public class PrimeNumber {
     public static int solution(String numbers) {
-        char[] numberChars = numbers.toCharArray();
+        int[] intNumbers = new int[numbers.length()];
         Set<String> numSet = new HashSet<>();
 
-        for (int i = 0; i < numberChars.length; i++) {
-            permutation(numberChars, numberChars.length, i + 1, numSet);
+        for (int i = 0; i < numbers.length(); i++) {
+            String strNum = numbers.substring(i, i+1);
+            intNumbers[i] = Integer.parseInt(strNum);
+            numSet.add(strNum);
         }
+
+        heapPermutation(intNumbers, intNumbers.length, intNumbers.length, numSet);
 
         int answer = 0;
         for (String num : numSet) {
+            System.out.println(num);
             if (isPrime(Integer.parseInt(num))) {
                 answer++;
             }
@@ -31,8 +36,44 @@ public class PrimeNumber {
         return answer;
     }
 
-    private static void permutation(char[] numChar, int length, int pickSize, Set<String> numSet) {
+    // Prints the array
+    private static void storeNumber(int a[], int n, Set<String> storage)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append(a[i]);
+        }
+//        System.out.println(sb);
+        storage.add(sb.toString());
+    }
 
+    // Generating permutation using Heap Algorithm
+    private static void heapPermutation(int a[], int size, int n, Set<String> storage)
+    {
+        // if size becomes 1 then store the obtained
+        // permutation
+        if (size == 1)
+            storeNumber(a, n, storage);
+
+        for (int i = 0; i < size; i++) {
+            heapPermutation(a, size - 1, n, storage);
+
+            // if size is odd, swap 0th i.e (first) and
+            // (size-1)th i.e (last) element
+            if (size % 2 == 1) {
+                int temp = a[0];
+                a[0] = a[size - 1];
+                a[size - 1] = temp;
+            }
+
+            // If size is even, swap ith
+            // and (size-1)th i.e last element
+            else {
+                int temp = a[i];
+                a[i] = a[size - 1];
+                a[size - 1] = temp;
+            }
+        }
     }
 
     private static boolean isPrime(int num) {
