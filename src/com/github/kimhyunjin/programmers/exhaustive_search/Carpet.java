@@ -19,17 +19,15 @@ public class Carpet {
         storeDivisor(brown + yellow, divisorSet);
 
         List<Integer> divisorList = new ArrayList<>(divisorSet);
-        divisorList.sort(Integer::compareTo);
-
+        divisorList.sort((a, b) -> b - a);
         int[] answer = new int[2];
-        int a = divisorList.get(divisorList.size() / 2);
-        int b = (brown + yellow) / a;
-        if (a >= b) {
-            answer[0] = a;
-            answer[1] = b;
-        } else {
-            answer[0] = b;
-            answer[1] = a;
+        for (int width : divisorList) {
+            int height = (brown + yellow) / width;
+            if ((width - 2) * (height - 2) == yellow) {
+                answer[0] = width;
+                answer[1] = height;
+                break;
+            }
         }
         return answer;
     }
