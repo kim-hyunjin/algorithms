@@ -15,30 +15,22 @@ import java.util.*;
 public class Carpet {
 
     public static int[] solution(int brown, int yellow) {
-        Set<Integer> divisorSet = new HashSet<>();
-        storeDivisor(brown + yellow, divisorSet);
-
-        List<Integer> divisorList = new ArrayList<>(divisorSet);
-        divisorList.sort((a, b) -> b - a);
         int[] answer = new int[2];
-        for (int width : divisorList) {
-            int height = (brown + yellow) / width;
-            if ((width - 2) * (height - 2) == yellow) {
-                answer[0] = width;
-                answer[1] = height;
-                break;
-            }
-        }
-        return answer;
-    }
+        int totalCarpetGrid = brown + yellow;
+        for (int i = (totalCarpetGrid) / 2; i > 0; i--) {
+            if ((totalCarpetGrid) % i == 0) {
+                int width = i;
+                int height = (totalCarpetGrid) / width;
 
-    private static void storeDivisor(int n, Set<Integer> set) {
-        for (int i = 1; i * i <= n; i++) {
-            if (n % i == 0) {
-                set.add(i);
-                set.add(n / i);
+                if ((width - 2) * (height - 2) == yellow) {
+                    answer[0] = width;
+                    answer[1] = height;
+                    break;
+                }
             }
         }
+
+        return answer;
     }
 
     public static void main(String[] args) {
