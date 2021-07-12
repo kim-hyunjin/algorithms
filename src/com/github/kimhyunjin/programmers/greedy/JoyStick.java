@@ -25,7 +25,22 @@ package com.github.kimhyunjin.programmers.greedy;
 public class JoyStick {
     public int solution(String name) {
         int answer = 0;
+        int minHorizontalMove = name.length() - 1;
+        for(int i = 0; i < name.length(); i++) {
+            answer += getMinVerticalMove(name.charAt(i));
+            int next = i + 1;
+            while (next < name.length() && name.charAt(next) == 'A') {
+                next++;
+            }
+            minHorizontalMove = Math.min(minHorizontalMove, (i * 2) + name.length() - next);
+
+        }
+        answer += minHorizontalMove;
         return answer;
+    }
+
+    private int getMinVerticalMove(char c) {
+        return Math.min(c - 'A', 'Z' - c + 1);
     }
 
     public static void main(String[] args) {
