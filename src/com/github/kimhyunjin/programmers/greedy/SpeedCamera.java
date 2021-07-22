@@ -1,5 +1,8 @@
 package com.github.kimhyunjin.programmers.greedy;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * 고속도로를 이동하는 모든 차량이 고속도로를 이용하면서 단속용 카메라를 한 번은 만나도록 카메라를 설치하려고 합니다.
  *
@@ -15,14 +18,40 @@ package com.github.kimhyunjin.programmers.greedy;
  * 차량의 진입 지점, 진출 지점은 -30,000 이상 30,000 이하입니다.
  */
 public class SpeedCamera {
+
     public int solution(int[][] routes) {
-        int answer = 0;
+        int answer = 1;
+        Arrays.sort(routes, Comparator.comparingInt(a -> a[0]));
+        int out = routes[0][1];
+        for (int[] route: routes) {
+            if (out < route[0]) {
+                answer++;
+                out = route[1];
+            }
+            if (route[1] <= out) {
+                out = route[1];
+            }
+        }
         return answer;
+    }
+
+    public int solution2(int[][] routes) {
+        int installedCameraCount = 0;
+        Arrays.sort(routes, Comparator.comparingInt(a -> a[1]));
+        int camera = Integer.MIN_VALUE;
+
+        for (int[] route : routes) {
+            if (camera < route[0]) {
+                camera = route[1];
+                installedCameraCount++;
+            }
+        }
+        return installedCameraCount;
     }
 
     public static void main(String[] args) {
         int[][] routes = {{-20, 15}, {-14, -5}, {-18, -13}, {-5, -3}};
-        if (new SpeedCamera().solution(routes) == 2) {
+        if (new SpeedCamera().solution2(routes) == 2) {
             System.out.println("OK");
         }
     }
