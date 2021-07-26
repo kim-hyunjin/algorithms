@@ -1,5 +1,6 @@
 package com.github.kimhyunjin.programmers.dynamic_programming;
 
+import java.util.HashSet;
 /**
  * 문제 설명
  * 아래와 같이 5와 사칙연산만으로 12를 표현할 수 있습니다.
@@ -19,8 +20,28 @@ package com.github.kimhyunjin.programmers.dynamic_programming;
  */
 public class NumberN {
     public int solution(int N, int number) {
-        int answer = 0;
-        return answer;
+        HashSet<Integer>[] dp = new HashSet[9];
+        for (int i = 1; i <= 8; i++) {
+            HashSet<Integer> set = new HashSet<>();
+            set.add(Integer.parseInt(String.valueOf(N).repeat(i)));
+            dp[i] = set;
+            for (int j = 1; j < i; j++) {
+                for (int n1 : dp[j]) {
+                    for (int n2 : dp[i - j]) {
+                        dp[i].add(n1 + n2);
+                        dp[i].add(n1 - n2);
+                        dp[i].add(n1 * n2);
+                        if (n2 != 0) {
+                            dp[i].add(n1 / n2);
+                        }
+                    }
+                }
+            }
+            if (dp[i].contains(number)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
