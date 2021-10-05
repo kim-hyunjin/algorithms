@@ -23,12 +23,22 @@ public class Decoder {
         }
         return sb.toString();
     }
+    /** replace 사용 */
+    public String solution2(int count, String secret) {
+        String answer = "";
+        for (int i = 0 ; i < count; i++) {
+            String tmp = secret.substring(0, WORD_SIZE).replace('#', '1').replace('*', '0');
+            answer += (char) Integer.parseInt(tmp, 2);
+            secret = secret.substring(WORD_SIZE);
+        }
+        return answer;
+    }
     public static void main(String[] args){
         Decoder decoder = new Decoder();
         Scanner in=new Scanner(System.in);
         int count = Integer.parseInt(in.nextLine());
         String secret = in.nextLine();
-        System.out.println(decoder.solution(count, secret));
+        System.out.println(decoder.solution2(count, secret));
         return ;
     }
 }
