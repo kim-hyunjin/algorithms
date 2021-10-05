@@ -1,23 +1,26 @@
 package com.github.kimhyunjin.inflearn.string;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Palindrome {
     public String solution(String input) {
-        String left = input.substring(0, input.length() / 2);
-        String right = "";
-        if (input.length() % 2 == 0) {
-            right = input.substring((input.length() / 2));
-        } else {
-            right = input.substring((input.length() / 2) + 1);
-        }
-        right = new StringBuilder(right).reverse().toString();
-
-        if (left.equalsIgnoreCase(right)) {
+        String reversed = new StringBuilder(input).reverse().toString();
+        if (input.equalsIgnoreCase(reversed)) {
             return "YES";
         } else {
             return "NO";
         }
+    }
+
+    public String solution2(String input) {
+        input = input.toUpperCase();
+        for (int i = 0; i < input.length()/2; i++) {
+            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+                return "NO";
+            }
+        }
+        return "YES";
     }
 
     public static void main(String[] args) {
