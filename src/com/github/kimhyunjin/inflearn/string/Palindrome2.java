@@ -14,28 +14,29 @@ public class Palindrome2 {
     }
     public String solution(String input) {
         input = toAlphabet(input);
-
-        String left = input.substring(0, input.length() / 2);
-        String right = "";
-        if (input.length() % 2 == 0) {
-            right = input.substring((input.length() / 2));
-        } else {
-            right = input.substring((input.length() / 2) + 1);
-        }
-        right = new StringBuilder(right).reverse().toString();
-
-        if (left.equalsIgnoreCase(right)) {
+        String reversed = new StringBuilder(input).reverse().toString();
+        if (input.equalsIgnoreCase(reversed)) {
             return "YES";
         } else {
             return "NO";
         }
     }
 
+    /** replaceAll, 정규식 사용 */
+    public String solution2(String input) {
+        input = input.toUpperCase().replaceAll("[^A-Z]", "");
+        String reversed = new StringBuilder(input).reverse().toString();
+        if (input.equals(reversed)) {
+            return "YES";
+        }
+        return "NO";
+    }
+
     public static void main(String[] args) {
         Palindrome2 palindrome = new Palindrome2();
         Scanner in = new Scanner(System.in);
         String input1 = in.nextLine();
-        System.out.println(palindrome.solution(input1));
+        System.out.println(palindrome.solution2(input1));
         return;
     }
 }
