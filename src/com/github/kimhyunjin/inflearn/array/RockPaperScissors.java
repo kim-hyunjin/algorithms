@@ -5,37 +5,18 @@ import java.util.Scanner;
 public class RockPaperScissors {
     public void solution(int[] A, int[] B) {
         for (int i = 0; i < A.length; i++) {
-            if (A[i] == 1) {
-                if (B[i] == 1) {
-                    System.out.println("D");
-                } else if (B[i] == 2) {
-                    System.out.println("B");
-                } else {
+            if (A[i] == B[i]) System.out.println("D");
+            else {
+                if ((A[i] == 1 && B[i] == 3) || (A[i] == 2 && B[i] == 1) || (A[i] == 3 && B[i] == 2))
                     System.out.println("A");
-                }
-            } else if (A[i] == 2) {
-                if (B[i] == 1) {
-                    System.out.println("A");
-                } else if (B[i] == 2) {
-                    System.out.println("D");
-                } else {
-                    System.out.println("B");
-                }
-            } else {
-                if (B[i] == 1) {
-                    System.out.println("B");
-                } else if (B[i] == 2) {
-                    System.out.println("A");
-                } else {
-                    System.out.println("D");
-                }
+                else System.out.println("B");
             }
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         RockPaperScissors rockPaperScissors = new RockPaperScissors();
-        Scanner in=new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         int input1 = in.nextInt();
         int[] A = new int[input1];
         int[] B = new int[input1];
@@ -48,6 +29,6 @@ public class RockPaperScissors {
 
         rockPaperScissors.solution(A, B);
 
-        return ;
+        return;
     }
 }
