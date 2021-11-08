@@ -57,6 +57,32 @@ public class Mentoring {
         return answer;
     }
 
+    /**
+     * 강좌풀이
+     * 학생 n 명의 멘토-멘티 짝 경우의 수는 n(n-1) 이다. 학생번호는 1부터 시작
+     * m = 테스트 수
+     */
+    private int solution2(int n, int m, int[][] arr) {
+        int answer = 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                int cnt = 0;
+                for (int k = 0; k < m; k++) {
+                    int pi = 0, pj = 0; // pi: i학생 등수, pj: j학생 등수
+                    for (int s = 0; s < n; s++) {
+                        if (arr[k][s] == i) pi = s;
+                        if (arr[k][s] == j) pj = s;
+                    }
+                    if (pi<pj) cnt++; // 등수가 더 높으면 +
+                }
+                if (cnt == m) { // 모든 테스트에서 등수가 앞섰다면
+                    answer++; // 정답 + 1
+                }
+            }
+        }
+        return answer;
+    }
+
     public static void main(String[] args){
         Mentoring mentoring = new Mentoring();
         Scanner in=new Scanner(System.in);
@@ -70,7 +96,7 @@ public class Mentoring {
             }
         }
 
-        System.out.println(mentoring.solution(students, tests, table));
+        System.out.println(mentoring.solution2(students, tests, table));
 
         return ;
     }
