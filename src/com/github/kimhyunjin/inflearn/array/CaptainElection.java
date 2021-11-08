@@ -29,6 +29,30 @@ public class CaptainElection {
         return answer;
     }
 
+    // 강좌 풀이 - list 나 set 없이도 간단히 풀이가 가능했다.
+    private int solution2(final int n, final int[][] arr) {
+        int answer = 0, max = Integer.MIN_VALUE;
+
+        // i 학생 j 학생
+        for (int i = 0; i < n; i++) {
+            int cnt = 0;
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < 5; k++) { // 1 ~ 5학년
+                    if(arr[i][k] == arr[j][k]) { // 모든 i가 i, j 가 같은 경우라도 똑같이 count 하기때문에 상관없다.
+                        cnt++;
+                        break; // 한 번이라도 같은 반이었으면 더 비교할 필요 없다.
+                    }
+                }
+            }
+            if (cnt > max) {
+                max = cnt;
+                answer = i + 1;
+            }
+        }
+
+        return answer;
+    }
+
 
     public static void main(String[] args){
         CaptainElection captainElection = new CaptainElection();
@@ -41,7 +65,7 @@ public class CaptainElection {
             }
         }
 
-        System.out.println(captainElection.solution(students, table));
+        System.out.println(captainElection.solution2(students, table));
         return ;
     }
 }
