@@ -1,6 +1,8 @@
 package com.github.kimhyunjin.inflearn.twopointer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -21,6 +23,20 @@ public class ConcatTwoArray {
     // stream 사용
     private int[] concat2(int[] arr1, int[] arr2) {
         return IntStream.concat(Arrays.stream(arr1), Arrays.stream(arr2)).sorted().toArray();
+    }
+
+    // 포인터 2개 사용
+    private List<Integer> concat3(int[] arr1, int[] arr2) {
+        ArrayList<Integer> answer = new ArrayList<>();
+        int p1 = 0;
+        int p2 = 0;
+        while(p1 < arr1.length && p2 < arr2.length) {
+            if (arr1[p1] < arr2[p2]) answer.add(arr1[p1++]);
+            else answer.add(arr2[p2++]);
+        }
+        while(p1 < arr1.length) answer.add(arr1[p1++]);
+        while(p2 < arr2.length) answer.add(arr2[p2++]);
+        return answer;
     }
 
     public static void main(String[] args){

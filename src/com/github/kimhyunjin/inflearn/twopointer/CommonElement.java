@@ -22,6 +22,24 @@ public class CommonElement {
         return list.stream().sorted().mapToInt(i -> i).toArray();
     }
 
+    // 포인터 2개 사용
+    private List<Integer> solution2(int[] arr1, int[] arr2) {
+        ArrayList<Integer> answer = new ArrayList<>();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        int p1 = 0, p2 = 0;
+        while (p1 < arr1.length && p2 < arr2.length) {
+            if (arr1[p1] == arr2[p2]) {
+                answer.add(p1);
+                p1++;
+                p2++;
+            } else if (arr1[p1] < arr2[p2]) {
+                p1++;
+            } else p2++;
+        }
+        return answer;
+    }
+
     public static void main(String[] args){
         CommonElement commonElement = new CommonElement();
         Scanner in=new Scanner(System.in);
