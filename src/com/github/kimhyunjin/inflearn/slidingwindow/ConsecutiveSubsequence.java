@@ -36,6 +36,21 @@ public class ConsecutiveSubsequence {
         return answer;
     }
 
+    // O(n)으로 문제 해결하기.
+    private static int solution2(int[] arr, int targetSum) {
+        int answer = 0, sum = 0, lt = 0;
+        // rt 가 n번 순회. lt가 뒤를 쫓아감
+        for (int rt = 0;  rt < arr.length; rt++) {
+            sum += arr[rt];
+            if (sum == targetSum) answer++;
+            while (sum >= targetSum) {
+                sum -= arr[lt++];
+                if (sum == targetSum) answer++;
+            }
+        }
+        return answer;
+    }
+
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         int len = in.nextInt();
@@ -44,7 +59,7 @@ public class ConsecutiveSubsequence {
         for (int i = 0; i < len; i++) {
             arr[i] = in.nextInt();
         }
-        System.out.println(solution(arr, targetSum));
+        System.out.println(solution2(arr, targetSum));
         return ;
     }
 }

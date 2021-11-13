@@ -37,6 +37,21 @@ public class MaxLengthSubsequence {
         return maxLen;
     }
 
+    private static int solution2(int[] arr, int life) {
+        int answer = 0, usedLife = 0, lt = 0;
+        for (int rt = 0; rt < arr.length; rt++) {
+            if(arr[rt] == 0) usedLife ++;
+            // 0 을 1로 바꾸는 데 필요한 life가 없다면 lt를 늘려가며 life 회복하기
+            while (usedLife > life) {
+                if(arr[lt] == 0) usedLife--;
+                lt++;
+            }
+            // 현재 윈도우의 크기 : rt - lt + 1
+            answer = Math.max(answer, rt - lt + 1);
+        }
+        return answer;
+    }
+
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         int len = in.nextInt();
@@ -45,7 +60,7 @@ public class MaxLengthSubsequence {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = in.nextInt();
         }
-        System.out.println(solution(arr, life));
+        System.out.println(solution2(arr, life));
         return ;
     }
 }
