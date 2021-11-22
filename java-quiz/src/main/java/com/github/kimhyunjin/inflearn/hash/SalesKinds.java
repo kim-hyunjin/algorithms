@@ -9,10 +9,13 @@ public class SalesKinds {
         Map<Integer, Integer> map = new HashMap<>();
         int lt = 0, rt = 0;
 
+        // 윈도우 만들기
         for (; rt < k; rt++) {
             map.put(sales[rt], map.getOrDefault(sales[rt], 0) + 1);
         }
-        answer.add(map.keySet().size());
+        answer.add(map.size()); // map.size() == map.keySet().size()
+
+        // 윈도우 밀기
         while (rt < sales.length) {
             if (map.get(sales[lt]) > 1) {
                 map.put(sales[lt], map.get(sales[lt]) - 1);
@@ -20,7 +23,7 @@ public class SalesKinds {
                 map.remove(sales[lt]);
             }
             map.put(sales[rt], map.getOrDefault(sales[rt], 0) + 1);
-            answer.add(map.keySet().size());
+            answer.add(map.size());
             lt++;
             rt++;
         }
@@ -54,4 +57,5 @@ public class SalesKinds {
  * ==> set을 내가 직접 만드는 방식으론 불가.
  * ==> 슬라이딩할 때 map에 넣고 갯수를 카운팅 하는 방법으로 변경.
  * ==> map의 ketSet() 메소드를 사용해 set을 얻을 수 있었다.
+ * ==> 그런데 map의 ketSet()는 직접 얻을 필요 없었다. map.size() == map.ketSet().size() 이므로...
  */
