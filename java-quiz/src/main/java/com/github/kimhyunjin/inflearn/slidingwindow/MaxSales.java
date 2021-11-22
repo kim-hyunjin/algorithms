@@ -12,7 +12,7 @@ public class MaxSales {
         int max = sum;
 
         for (int i = consecutiveDays; i < sales.length; i++) {
-            sum += (sales[i] - sales[i - consecutiveDays]);
+            sum += (sales[i] - sales[i - consecutiveDays]); // 윈도우 이동
             max = Math.max(max, sum);
         }
         return max;
