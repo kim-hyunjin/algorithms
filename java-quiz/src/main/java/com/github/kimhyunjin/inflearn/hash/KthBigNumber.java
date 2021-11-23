@@ -56,4 +56,8 @@ public class KthBigNumber {
 /**
  * 처음에 문제를 풀때는 Set으로 중복을 없애고 직접 정렬했지만
  * 강의를 통해, TreeSet을 사용하면 정렬과 동시에 중복을 없앨 수 있다는 것을 알게되었다.
+ *
+ * 정렬만을 위해서라면 이진트리로 된 TreeMap을 사용할 수도 있다.
+ * HashMap은 O(1)로 값을 꺼낼 수 있고,
+ * TreeMap은 log(n)으로 꺼낼 수 있다.
  */
