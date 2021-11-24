@@ -1,4 +1,4 @@
-package com.github.kimhyunjin.inflearn;
+package com.github.kimhyunjin.inflearn.hash;
 
 import com.github.kimhyunjin.inflearn.hash.KthBigNumber;
 import org.junit.jupiter.api.Test;
