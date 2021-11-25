@@ -1,6 +1,7 @@
 package com.github.kimhyunjin.inflearn.stackqueue;
 
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class SavingPrincess {
@@ -17,6 +18,23 @@ public class SavingPrincess {
             list.remove(i);
         }
         return list.getFirst();
+    }
+
+    // queue를 사용한 예
+    public static int solution2(int numberOfPrince, int K) {
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 1; i <= numberOfPrince; i++) {
+            queue.add(i);
+        }
+        int answer = 0;
+        while (!queue.isEmpty()) {
+            for (int i = 1; i < K; i++) {
+                queue.add(queue.poll()); // K번째가 아닌 왕자들은 맨 뒤로 다시 보낸다.
+            }
+            queue.poll(); // K번째 왕자는 빠진다.
+            if (queue.size() == 1) answer = queue.poll();
+        }
+        return answer;
     }
 
     public static void main(String[] args){

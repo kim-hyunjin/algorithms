@@ -23,6 +23,32 @@ public class PuppetDraw {
         return answer;
     }
 
+    // 큐 대신 2차원 배열 그대로 사용한 풀이
+    public static int solution2(int[][] board, int[] moves) {
+        int answer = 0;
+
+        Stack<Integer> stack = new Stack<>();
+        for (int pos : moves) {
+            // 크레인을 1씩 내린다.
+            for (int i = 0; i < board.length; i++) {
+                if(board[i][pos-1] != 0) {
+                    // 인형 뽑음
+                    int temp = board[i][pos-1];
+                    board[i][pos-1] = 0;
+                    if(!stack.isEmpty() && temp == stack.peek()) {
+                        answer += 2;
+                        stack.pop();
+                    } else {
+                        stack.push(temp);
+                    }
+                    break;
+                }
+            }
+        }
+
+        return answer;
+    }
+
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
 

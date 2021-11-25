@@ -22,7 +22,7 @@ public class CorrectBracket {
     }
 
     // 스택 사용하기
-    private static boolean isRightBracket2(String brackets) {
+    public static boolean isRightBracket2(String brackets) {
         Stack<Character> stack = new Stack<>();
         for (char c : brackets.toCharArray()) {
             if (c == '(') {
