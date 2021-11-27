@@ -15,8 +15,8 @@ import java.util.Scanner;
  */
 public class SelectionSort {
 
-    private static int[] solution(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
+    public static int[] solution(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
             int min = Integer.MAX_VALUE;
             int minIndex = -1;
             for (int j = i; j < arr.length; j++) {
