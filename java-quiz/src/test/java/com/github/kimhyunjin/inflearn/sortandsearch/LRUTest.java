@@ -1,4 +1,4 @@
-package com.github.kimhyunjin.inflearn.sort;
+package com.github.kimhyunjin.inflearn.sortandsearch;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

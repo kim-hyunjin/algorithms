@@ -1,4 +1,4 @@
-package com.github.kimhyunjin.inflearn.sort;
+package com.github.kimhyunjin.inflearn.sortandsearch;
 
 import java.util.Scanner;
 
