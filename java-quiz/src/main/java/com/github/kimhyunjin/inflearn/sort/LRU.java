@@ -25,6 +25,37 @@ public class LRU {
         return result;
     }
 
+    public int[] solution2(int cacheSize, int[] jobs) {
+        int[] cache = new int[cacheSize];
+
+        for (int job : jobs) {
+            int pos = getPosIfAlreadyInCache(job, cache);
+
+            if (pos == -1) {
+                for (int i = cacheSize - 1; i >= 1; i--) {
+                    cache[i] = cache[i - 1];
+                }
+//                위 for 문과 같은 일을 하는 코드
+//                if (cacheSize - 1 >= 0) System.arraycopy(cache, 0, cache, 1, cacheSize - 1);
+            } else {
+                for (int i = pos; i >= 1; i--) {
+                    cache[i] = cache[i - 1];
+                }
+//                System.arraycopy(cache, 0, cache, 1, pos);
+            }
+            cache[0] = job;
+        }
+        return cache;
+    }
+
+    private int getPosIfAlreadyInCache(int job, int[] cache) {
+        int pos = -1;
+        for (int i = 0; i < cache.length; i++) {
+            if (job == cache[i]) pos = i;
+        }
+        return pos;
+    }
+
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         int cacheSize = in.nextInt();
