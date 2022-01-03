@@ -3,9 +3,12 @@ package com.github.kimhyunjin.inflearn.sortandsearch;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * 결정 알고리즘
+ */
 public class MusicVideo {
 
-    private int solution(int[] songs, int numOfAlbum) {
+    public int solution(int[] songs, int numOfAlbum) {
         int answer = 0;
         int lt = Arrays.stream(songs).max().getAsInt();
         int rt = Arrays.stream(songs).sum();
@@ -21,6 +24,7 @@ public class MusicVideo {
         return answer;
     }
 
+    // 유효함수
     private boolean isAllSongsCanStore(int[] songs, int capacity, int numOfAlbum) {
         int currentAlbumCnt = 1, sum = 0;
         for (int song : songs) {
