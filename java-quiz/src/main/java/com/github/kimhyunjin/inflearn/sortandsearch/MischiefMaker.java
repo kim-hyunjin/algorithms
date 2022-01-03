@@ -7,22 +7,7 @@ import java.util.Scanner;
 
 public class MischiefMaker {
 
-    public int[] solution(int[] students) {
-        int[] result = new int[2];
-        int firstMischiefMaker = -1;
-        for (int i = 0; i < students.length - 1; i++) {
-            if (firstMischiefMaker == -1 && students[i] > students[i + 1]) {
-                firstMischiefMaker = i;
-                result[0] = i + 1;
-            }
-            if (students[i] < students[firstMischiefMaker + 1]) {
-                result[1] = i + 1;
-            }
-        }
-        return result;
-    }
-
-     public List<Integer> solution2(int[] students) {
+    public List<Integer> solution(int[] students) {
          ArrayList<Integer> answer = new ArrayList<>();
          int[] correctlySortedStudents = students.clone();
          Arrays.sort(correctlySortedStudents);
@@ -43,7 +28,7 @@ public class MischiefMaker {
         }
 
         MischiefMaker mischiefMaker = new MischiefMaker();
-        int[] result = mischiefMaker.solution(students);
+        List<Integer> result = mischiefMaker.solution(students);
         for (int i : result) {
             System.out.print(i + " ");
         }
