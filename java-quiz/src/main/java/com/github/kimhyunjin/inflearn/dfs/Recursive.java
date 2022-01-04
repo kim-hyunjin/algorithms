@@ -1,4 +1,4 @@
-package com.github.kimhyunjin.inflearn.basic;
+package com.github.kimhyunjin.inflearn.dfs;
 
 public class Recursive {
 
