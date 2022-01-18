@@ -3,7 +3,7 @@ package com.github.kimhyunjin.inflearn.dfs;
 import java.util.Scanner;
 
 public class Permutation2 {
-    static int[] permutation, check, arr;
+    static int[] permutation, check, numbers;
 
     public void DFS(int L) {
         if(L == permutation.length) {
@@ -12,9 +12,10 @@ public class Permutation2 {
             }
             System.out.println();
         } else {
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < numbers.length; i++) {
                 if (check[i] == 0) {
-                    permutation[L] = arr[i];
+                    check[i] = 1;
+                    permutation[L] = numbers[i];
                     DFS(L+1);
                     check[i] = 0;
                 }
@@ -27,9 +28,9 @@ public class Permutation2 {
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
         int m = kb.nextInt();
-        arr = new int[n];
+        numbers = new int[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = kb.nextInt();
+            numbers[i] = kb.nextInt();
         }
         check = new int[n];
         permutation = new int[m];
