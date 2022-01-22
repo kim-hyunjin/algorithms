@@ -10,8 +10,7 @@ public class MazeExplorationTest {
         int expected = 8;
 
         int mazeSize = 7;
-        MazeExploration mazeExploration = new MazeExploration();
-        mazeExploration.maze = new int[][]{
+        int[][] maze = new int[][]{
                 {0, 0, 0, 0, 0, 0, 0},
                 {0, 1, 1, 1, 1, 1, 0},
                 {0, 0, 0, 1, 0, 0, 0},
@@ -20,7 +19,8 @@ public class MazeExplorationTest {
                 {1, 1, 0, 1, 1, 0, 0},
                 {1, 0, 0, 0, 0, 0, 0}
         };
-        mazeExploration.DFS(0);
+        MazeExploration mazeExploration = new MazeExploration(maze, new int[]{0,0}, new int[]{6, 6});
+        mazeExploration.DFS(0, 0);
         Assertions.assertEquals(expected, mazeExploration.answer);
     }
 }
