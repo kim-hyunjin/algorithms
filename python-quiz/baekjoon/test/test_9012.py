@@ -10,7 +10,10 @@ class Test9012(unittest.TestCase):
         self.assertEqual(quiz_9012.solution("(())())"), "NO")
 
     def test2(self):
-        self.assertEqual(quiz_9012.solution("(((()())()"), "YES")
+        self.assertEqual(quiz_9012.solution("(()())((()))"), "YES")
+
+    def test3(self):
+        self.assertEqual(quiz_9012.solution(""), "NO")
 
 
 if __name__ == '__main__':

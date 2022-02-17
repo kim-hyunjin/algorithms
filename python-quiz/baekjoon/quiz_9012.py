@@ -1,4 +1,5 @@
 def solution(ps):
+    if len(ps) < 2: return "NO"
     stack = []
 
     for bracket in ps:
