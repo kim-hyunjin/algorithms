@@ -28,11 +28,11 @@ def solution2():
     for _ in range(int(input())):
         stack = []
         isVPS = True
-        for ch in input():
+        for ch in input(): # input으로 받은 문자열을 이렇게 바로 순회할 수 있다. 
             if ch == '(':
                 stack.append(ch)
             else:
-                if stack:
+                if stack: # 리스트의 길이가 0보다 큰지 이렇게 체크할 수 있다.
                     stack.pop()
                 else:
                     isVPS = False
@@ -41,7 +41,7 @@ def solution2():
         if stack:
             isVPS = False
 
-        print('YES' if isVPS else 'NO')
+        print('YES' if isVPS else 'NO') # 어떤 값을 출력할지 이렇게 조건문을 사용할 수 있다.
 
 
 
