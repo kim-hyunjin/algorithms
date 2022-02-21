@@ -29,13 +29,14 @@ def solution2(books):
         else:
             d[book] = 1
 
+    # 이렇게 하면 쉽게 dictionary의 max value값을 구할 수 있음
     mostSelledCnt = max(d.values())
     candidate = []
-    for k, v in d.items():
+    for k, v in d.items(): # dictionary를 [(key, value)] 로 바꿈
         if v == mostSelledCnt:
             candidate.append(k)
 
-    return sorted(candidate)[0]
+    return sorted(candidate)[0] # sorted()는 정렬된 새 배열을 만든다
 
 def main():
     N = int(input())
