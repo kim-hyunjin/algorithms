@@ -52,11 +52,12 @@ def solution2():
 def solution3():
     heights = [int(input()) for _ in range(9)]
     heights.sort()
-    tot = sum(heights)
-    # 9개 중에 7뽑는건 9개 중 2개를 뽑는 것과 같다
-    f(heights, tot)
+    find_true_dwarf(heights)
 
-def f(heights, tot):
+def find_true_dwarf(heights, tot):
+    tot = sum(heights)
+    
+    # 9개 중에 7뽑는건 9개 중 2개를 뽑는 것과 같다
     for i in range(8):
         for j in range(i+1, 9):
             if tot - heights[i] - heights[j] == 100:
