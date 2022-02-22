@@ -39,9 +39,7 @@ public class Combination {
         r = in.nextInt();
         mem = new int[n + 1][n + 1];
         Combination combination = new Combination();
-//        combination.DFS(0);
-//        System.out.println(mem[n][r]);
-        System.out.println(combination.DFS(n, r));
+        combination.DFS(n, r);
         return ;
     }
 }

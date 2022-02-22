@@ -2,6 +2,9 @@ package com.github.kimhyunjin.inflearn.dfs;
 
 import java.util.Scanner;
 
+/**
+ * 1 ~ n 까지의 수 중에서 r개 뽑는 조합을 모두 출력
+ */
 public class Combination2 {
     static int n, r;
     static int[] combi;
