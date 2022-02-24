@@ -27,8 +27,7 @@ def solution2():
 
     answer = 0
     for coin in coins:
-        print(K)
-        answer += K
+        answer += K // coin # // 연산자 : 나누기 연산 후 소수점 이하는 버림
         K %= coin
     
     print(answer)
