@@ -1,4 +1,5 @@
 import math
+from posixpath import split
 
 def solution(coins: list, target: int):
     remain = target
@@ -18,5 +19,20 @@ def main():
     
     print(solution(coins, target))
 
+# 강의 풀이
+def solution2():
+    N, K = map(int, input().split())
+    coins = [int(input()) for _ in range(N)]
+    coins.reverse()
+
+    answer = 0
+    for coin in coins:
+        print(K)
+        answer += K
+        K %= coin
+    
+    print(answer)
+
 if __name__ == "__main__":
-    main()
+    # main()
+    solution2()
