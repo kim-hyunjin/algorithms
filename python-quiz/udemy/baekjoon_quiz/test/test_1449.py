@@ -2,7 +2,7 @@ import unittest
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
-import quiz_1449
+import greedy.quiz_1449 as quiz_1449
 
 class Test1449(unittest.TestCase):
 
