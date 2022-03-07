@@ -16,6 +16,8 @@ for i in range(N):
     for j in range(M):
         maze[i][j] = int(mazeRow[j])
 
+def is_valid(ny, nx):
+    return 0 <= nx < M and 0 <= ny < N and maze[ny][nx] == 1
 
 def BFS():
     dq = deque()
@@ -24,15 +26,15 @@ def BFS():
     dis[0][0] = 1
 
     while dq:
-        cur = dq.popleft()
+        x, y = dq.popleft()
         for i in range(4):
-            nx = cur[0] + dx[i]
-            ny = cur[1] + dy[i]
+            nx = x + dx[i]
+            ny = y + dy[i]
             
-            if nx >= 0 and ny >= 0 and nx < M and ny < N and maze[ny][nx] == 1:
+            if is_valid(ny, nx):
                 maze[ny][nx] = 0
                 dq.append([nx, ny])
-                dis[ny][nx] = dis[cur[1]][cur[0]] + 1
+                dis[ny][nx] = dis[y][x] + 1
             
 BFS()
 
