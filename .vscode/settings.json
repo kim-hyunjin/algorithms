@@ -9,6 +9,7 @@
     "forward_list": "cpp",
     "list": "cpp",
     "queue": "cpp",
-    "string_view": "cpp"
+    "string_view": "cpp",
+    "__locale": "cpp"
   }
 }
